@@ -125,20 +125,19 @@ class PrinterInterface
 
 template<typename T>
 T scanValue(char const* buffer, char** end);
+template<>  inline short              scanValue<short>(char const* buffer, char** end)              {return std::strtol(buffer, end, 10);}
+template<>  inline int                scanValue<int>(char const* buffer, char** end)                {return std::strtol(buffer, end, 10);}
+template<>  inline long               scanValue<long>(char const* buffer, char** end)               {return std::strtol(buffer, end, 10);}
+template<>  inline long long          scanValue<long long>(char const* buffer, char** end)          {return std::strtoll(buffer, end, 10);}
 
-template<>  inline short                   scanValue<short>(char const* buffer, char** end)                   {return std::strtol(buffer, end, 10);}
-template<>  inline int                     scanValue<int>(char const* buffer, char** end)                     {return std::strtol(buffer, end, 10);}
-template<>  inline long int                scanValue<long int>(char const* buffer, char** end)                {return std::strtol(buffer, end, 10);}
-template<>  inline long long int           scanValue<long long int>(char const* buffer, char** end)           {return std::strtoll(buffer, end, 10);}
+template<>  inline unsigned short     scanValue<unsigned short>(char const* buffer, char** end)     {return std::strtoul(buffer, end, 10);}
+template<>  inline unsigned int       scanValue<unsigned int>(char const* buffer, char** end)       {return std::strtoul(buffer, end, 10);}
+template<>  inline unsigned long      scanValue<unsigned long>(char const* buffer, char** end)      {return std::strtoul(buffer, end, 10);}
+template<>  inline unsigned long long scanValue<unsigned long long>(char const* buffer, char** end) {return std::strtoull(buffer, end, 10);}
 
-template<>  inline unsigned short          scanValue<unsigned short>(char const* buffer, char** end)          {return std::strtoul(buffer, end, 10);}
-template<>  inline unsigned int            scanValue<unsigned int>(char const* buffer, char** end)            {return std::strtoul(buffer, end, 10);}
-template<>  inline unsigned long int       scanValue<unsigned long int>(char const* buffer, char** end)       {return std::strtoul(buffer, end, 10);}
-template<>  inline unsigned long long int  scanValue<unsigned long long int>(char const* buffer, char** end)  {return std::strtoull(buffer, end, 10);}
-
-template<>  inline float                   scanValue<float>(char const* buffer, char** end)                   {return std::strtof(buffer, end);}
-template<>  inline double                  scanValue<double>(char const* buffer, char** end)                  {return std::strtod(buffer, end);}
-template<>  inline long double             scanValue<long double>(char const* buffer, char** end)             {return std::strtold(buffer, end);}
+template<>  inline float              scanValue<float>(char const* buffer, char** end)              {return std::strtof(buffer, end);}
+template<>  inline double             scanValue<double>(char const* buffer, char** end)             {return std::strtod(buffer, end);}
+template<>  inline long double        scanValue<long double>(char const* buffer, char** end)        {return std::strtold(buffer, end);}
 
 class Serializer;
 class DeSerializer;
@@ -236,7 +235,10 @@ inline void ParserInterface::pushBackToken(ParserToken token)
 {
     if (pushBack != ParserToken::Error)
     {
-        throw std::runtime_error("ThorsAnvil::Serialize::ParserInterface::pushBackToken: Push only allows for single push back. More than one token has been pushed back between reads.");
+        throw std::runtime_error(
+                    "ThorsAnvil::Serialize::ParserInterface::pushBackToken: "
+                    "Push only allows for single push back. More than one token has been pushed back between reads."
+              );
     }
     pushBack    = token;
 }

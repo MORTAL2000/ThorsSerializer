@@ -15,7 +15,6 @@
  */
 
 
-
 #include <string>
 #include <tuple>
 
@@ -23,8 +22,8 @@
  * Macros for counting the number of arguments
  * Currently set up for a max of 20.
  */
-#define NUM_ARGS(...)          NUM_ARGS_(0, __VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 09, 08, 07, 06, 05, 04, 03, 02, 01, 00, Ignore)
-#define NUM_ARGS_(Zero, One, I1, I2, I3, I4 ,I5, I6, I7, I8, I9, I10, I11, I12, I13, I14, I15, I16, I17, I18, I19, I20, A, ...)  A
+#define NUM_ARGS(...)  NUM_ARGS_(0, __VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 09, 08, 07, 06, 05, 04, 03, 02, 01, 00, I)
+#define NUM_ARGS_(Zero, One, I1, I2, I3, I4, I5, I6, I7, I8, I9, I10, I11, I12, I13, I14, I15, I16, I17, I18, I19, I20, A, ...)  A
 
 /*
  * Macros to quote the parameter
@@ -51,30 +50,30 @@
 #define REP_OF_N(Act, P1, Count, ...)   REP_OF_N_(Act, P1, Count, __VA_ARGS__)
 #define REP_OF_N_(Act, P1, Count, ...)  REP_OF_ ## Count(Act, P1, __VA_ARGS__)
 
-#define REP_OF_20(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_19(Act, P1, __VA_ARGS__)
-#define REP_OF_19(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_18(Act, P1, __VA_ARGS__)
-#define REP_OF_18(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_17(Act, P1, __VA_ARGS__)
-#define REP_OF_17(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_16(Act, P1, __VA_ARGS__)
-#define REP_OF_16(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_15(Act, P1, __VA_ARGS__)
-#define REP_OF_15(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_14(Act, P1, __VA_ARGS__)
-#define REP_OF_14(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_13(Act, P1, __VA_ARGS__)
-#define REP_OF_13(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_12(Act, P1, __VA_ARGS__)
-#define REP_OF_12(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_11(Act, P1, __VA_ARGS__)
-#define REP_OF_11(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_10(Act, P1, __VA_ARGS__)
-#define REP_OF_10(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_09(Act, P1, __VA_ARGS__)
-#define REP_OF_09(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_08(Act, P1, __VA_ARGS__)
-#define REP_OF_08(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_07(Act, P1, __VA_ARGS__)
-#define REP_OF_07(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_06(Act, P1, __VA_ARGS__)
-#define REP_OF_06(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_05(Act, P1, __VA_ARGS__)
-#define REP_OF_05(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_04(Act, P1, __VA_ARGS__)
-#define REP_OF_04(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_03(Act, P1, __VA_ARGS__)
-#define REP_OF_03(Act, P1, P2, ...)     EXPAND(Act, P1 ,P2), REP_OF_02(Act, P1, __VA_ARGS__)
+#define REP_OF_20(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_19(Act, P1, __VA_ARGS__)
+#define REP_OF_19(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_18(Act, P1, __VA_ARGS__)
+#define REP_OF_18(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_17(Act, P1, __VA_ARGS__)
+#define REP_OF_17(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_16(Act, P1, __VA_ARGS__)
+#define REP_OF_16(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_15(Act, P1, __VA_ARGS__)
+#define REP_OF_15(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_14(Act, P1, __VA_ARGS__)
+#define REP_OF_14(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_13(Act, P1, __VA_ARGS__)
+#define REP_OF_13(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_12(Act, P1, __VA_ARGS__)
+#define REP_OF_12(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_11(Act, P1, __VA_ARGS__)
+#define REP_OF_11(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_10(Act, P1, __VA_ARGS__)
+#define REP_OF_10(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_09(Act, P1, __VA_ARGS__)
+#define REP_OF_09(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_08(Act, P1, __VA_ARGS__)
+#define REP_OF_08(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_07(Act, P1, __VA_ARGS__)
+#define REP_OF_07(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_06(Act, P1, __VA_ARGS__)
+#define REP_OF_06(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_05(Act, P1, __VA_ARGS__)
+#define REP_OF_05(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_04(Act, P1, __VA_ARGS__)
+#define REP_OF_04(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_03(Act, P1, __VA_ARGS__)
+#define REP_OF_03(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_02(Act, P1, __VA_ARGS__)
 #define REP_OF_02(Act, P1, P2, ...)     EXPAND(Act, P1, P2), REP_OF_01(Act, P1, __VA_ARGS__)
 #define REP_OF_01(Act, P1, P2, One)     EXPAND(Act, P1, P2)
 #define REP_OF_00(Act, P1, One)         Last_ ## Act(P1)
 
 
-/* 
+/*
  * The actions we apply with REP_*
  *
  * TypeAction:      Declares a type to hold the name and a pointer to the internal object.
@@ -121,7 +120,7 @@ static_assert(                                                                  
 )
 
 #define ThorsAnvil_MakeTrait(...)                                       \
-    ThorsAnvil_MakeTrait_Base( , Map, __VA_ARGS__, 1)
+    ThorsAnvil_MakeTrait_Base(, Map, __VA_ARGS__, 1)
 
 #define ThorsAnvil_ExpandTrait_With_Ext(ParentType, DataType, ...)      \
     static_assert(                                                      \
@@ -195,7 +194,7 @@ class Traits
         static constexpr TraitType type = TraitType::Invalid;
 
         // For types that are Map/Array/Parent we can also define
-        // members that need be serialized via types. To achieve this 
+        // members that need be serialized via types. To achieve this
         // they  define a static getMembers() function.
         // static Members const& getMembers()
         //
@@ -206,7 +205,7 @@ class Traits
         // So I use a static member function with a static variable
         // which can be defined in-line within the traits class and
         // does not need a separate declaration in a compilation unit.
-} ;
+};
 
 /*
  * Declare types that can be read/written directly by the parser/printer
@@ -229,8 +228,6 @@ template<> class Traits<long double>            {public: static constexpr TraitT
 template<> class Traits<bool>                   {public: static constexpr TraitType type = TraitType::Value;};
 
 template<> class Traits<std::string>            {public: static constexpr TraitType type = TraitType::Value;};
-
-
 
     }
 }

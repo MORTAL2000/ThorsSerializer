@@ -20,10 +20,10 @@ namespace ThorsAnvil
 
 inline std::size_t thash(std::size_t start, std::string const& input)
 {
-    static constexpr std::size_t    Mult = 37;
+    static constexpr std::size_t    mult = 37;
     for(auto loop: input)
     {
-        start = start * Mult + loop;
+        start = start * mult + loop;
     }
     return start;
 }
@@ -106,7 +106,13 @@ struct TraitsHash<std::multiset<T>>      {std::size_t operator()(std::size_t sta
 template<typename K, typename V>
 struct TraitsHash<std::map<K, V>>        {std::size_t operator()(std::size_t start){return thash(thash<K>(thash<V>(start)), "std::map");}};
 template<typename K, typename V>
-struct TraitsHash<std::multimap<K, V>>   {std::size_t operator()(std::size_t start){return thash(thash<K>(thash<V>(start)), "std::multimap");}};
+struct TraitsHash<std::multimap<K, V>>
+{
+    std::size_t operator()(std::size_t start)
+    {
+        return thash(thash<K>(thash<V>(start)), "std::multimap");
+    }
+};
     }
 }
 

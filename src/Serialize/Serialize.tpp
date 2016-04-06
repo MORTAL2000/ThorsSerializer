@@ -51,7 +51,8 @@ class DeSerializationForBlock
             ParserInterface::ParserToken    tokenType = parser.getToken();
 
             if (tokenType != ParserInterface::ParserToken::MapStart)
-            {   throw std::runtime_error("ThorsAnvil::Serialize::DeSerializationForBlock<Map>::DeSerializationForBlock: Invalid Object Start");
+            {   throw std::runtime_error("ThorsAnvil::Serialize::DeSerializationForBlock<Map>::DeSerializationForBlock: "
+                                         "Invalid Object Start");
             }
         }
 
@@ -151,7 +152,8 @@ class DeSerializationForBlock<TraitType::Array, T>
             ParserInterface::ParserToken    tokenType = parser.getToken();
 
             if (tokenType != ParserInterface::ParserToken::ArrayStart)
-            {   throw std::runtime_error("ThorsAnvil::Serialize::DeSerializationForBlock<Array>::DeSerializationForBlock: Invalid Object Start");
+            {   throw std::runtime_error("ThorsAnvil::Serialize::DeSerializationForBlock<Array>::DeSerializationForBlock: "
+                                         "Invalid Object Start");
             }
         }
 
@@ -178,10 +180,15 @@ class DeSerializationForBlock<TraitType::Array, T>
 /* ------------ DeSerializeMember ------------------------- */
 
 template<typename T, typename M, TraitType type>
-DeSerializeMember<T, M, type>::DeSerializeMember(ParserInterface& parser, std::string const& key, T& object, std::pair<char const*, M T::*> const& memberInfo)
+DeSerializeMember<T, M, type>::DeSerializeMember(ParserInterface& parser,
+                                                 std::string const& key,
+                                                 T& object,
+                                                 std::pair<char const*, M T::*> const& memberInfo
+                                                )
 {
-    static_assert(type != TraitType::Invalid, "Trying to de-serialize an object that does not have a ThorsAnvil::Serialize::Trait<> defined."
-                                              "Look at macro ThorsAnvil_MakeTrait() for more information.");
+    static_assert(type != TraitType::Invalid,
+                                "Trying to de-serialize an object that does not have a ThorsAnvil::Serialize::Trait<> defined."
+                                "Look at macro ThorsAnvil_MakeTrait() for more information.");
 
     if (key.compare(memberInfo.first) == 0)
     {
@@ -222,13 +229,20 @@ class DeSerializeMember<T, M, TraitType::Enum>
                 std::string     objectValue;
                 parser.getValue(objectValue);
 
-                object.*(memberInfo.second) = Traits<M>::getValue(objectValue, "ThorsAnvil::Serialize::DeSerializeMember<T,M,Enum>::DeSerializeMember:");
+                object.*(memberInfo.second) =
+                                Traits<M>::getValue(objectValue,
+                                                    "ThorsAnvil::Serialize::DeSerializeMember<T,M,Enum>::DeSerializeMember:"
+                                                   );
             }
         }
 };
 
 template<typename T, typename M>
-DeSerializeMember<T, M> make_DeSerializeMember(ParserInterface& parser, std::string const& key, T& object, std::pair<char const*, M T::*> const& memberInfo)
+DeSerializeMember<T, M> make_DeSerializeMember(ParserInterface& parser,
+                                               std::string const& key,
+                                               T& object,
+                                               std::pair<char const*, M T::*> const& memberInfo
+                                              )
 {
     return DeSerializeMember<T, M>(parser, key, object, memberInfo);
 }
@@ -237,7 +251,7 @@ DeSerializeMember<T, M> make_DeSerializeMember(ParserInterface& parser, std::str
 template<typename T, typename Members, std::size_t... Seq>
 inline void DeSerializer::scanEachMember(std::string const& key, T& object, Members const& member, std::index_sequence<Seq...> const&)
 {
-    auto discard = {(make_DeSerializeMember(parser, key, object, std::get<Seq>(member)),1)...};
+    auto discard = {(make_DeSerializeMember(parser, key, object, std::get<Seq>(member)), 1)...};
     (void)discard;
 }
 
@@ -306,7 +320,7 @@ class SerializerForBlock<TraitType::Value, T>
     PrinterInterface&   printer;
     T const&            object;
     public:
-        SerializerForBlock(Serializer&, PrinterInterface& printer,T const& object)
+        SerializerForBlock(Serializer&, PrinterInterface& printer, T const& object)
             : printer(printer)
             , object(object)
         {}
@@ -323,7 +337,7 @@ class SerializerForBlock<TraitType::Enum, T>
     PrinterInterface&   printer;
     T const&            object;
     public:
-        SerializerForBlock(Serializer&, PrinterInterface& printer,T const& object)
+        SerializerForBlock(Serializer&, PrinterInterface& printer, T const& object)
             : printer(printer)
             , object(object)
         {}
@@ -385,7 +399,7 @@ class SerializeMember<T, M, TraitType::Value>
 template<typename T, typename M>
 SerializeMember<T, M> make_SerializeMember(PrinterInterface& printer, T const& object, std::pair<char const*, M T::*> const& memberInfo)
 {
-    return SerializeMember<T,M>(printer, object, memberInfo);
+    return SerializeMember<T, M>(printer, object, memberInfo);
 }
 
 /* ------------ Serializer ------------------------- */
@@ -393,7 +407,7 @@ SerializeMember<T, M> make_SerializeMember(PrinterInterface& printer, T const& o
 template<typename T, typename Members, std::size_t... Seq>
 inline void Serializer::printEachMember(T const& object, Members const& member, std::index_sequence<Seq...> const&)
 {
-    auto discard = {(make_SerializeMember(printer, object, std::get<Seq>(member)),1)...};
+    auto discard = {(make_SerializeMember(printer, object, std::get<Seq>(member)), 1)...};
     (void)discard;
 }
 

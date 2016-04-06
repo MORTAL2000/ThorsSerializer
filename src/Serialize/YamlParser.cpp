@@ -67,9 +67,12 @@ ParserInterface::ParserToken YamlParser::getNextToken()
 
     switch(event.type)
     {
-        case YAML_STREAM_START_EVENT:   generateParsingException("ThorsAnvil::Serialize::YamlParser: Start should only happen as first event");
-        case YAML_ALIAS_EVENT:          generateParsingException("ThorsAnvil::Serialize::YamlParser: Alias not supported");
-        case YAML_NO_EVENT:             generateParsingException("ThorsAnvil::Serialize::YamlParser: No Event not supported");
+        case YAML_STREAM_START_EVENT:
+            generateParsingException("ThorsAnvil::Serialize::YamlParser: Start should only happen as first event");
+        case YAML_ALIAS_EVENT:
+            generateParsingException("ThorsAnvil::Serialize::YamlParser: Alias not supported");
+        case YAML_NO_EVENT:
+            generateParsingException("ThorsAnvil::Serialize::YamlParser: No Event not supported");
 
         case YAML_STREAM_END_EVENT:
         {

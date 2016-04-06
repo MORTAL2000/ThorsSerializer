@@ -80,26 +80,28 @@ ParserToken BinaryParserUtilBase::getNextToken(ParserInterface& parser, ParserSt
 #include "BinaryParser.tpp"
 #include "test/BinaryParserTest.h"
 
-template ThorsAnvil::Serialize::BinaryParserUtil<MapWithMap,      (ThorsAnvil::Serialize::TraitType)3>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<MapOneValue,     (ThorsAnvil::Serialize::TraitType)3>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<MapTwoValue,     (ThorsAnvil::Serialize::TraitType)3>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<MapEmptyTest,    (ThorsAnvil::Serialize::TraitType)3>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<MapWithArray,    (ThorsAnvil::Serialize::TraitType)3>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<MapThreeValue,   (ThorsAnvil::Serialize::TraitType)3>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<MapWithTwoMap,   (ThorsAnvil::Serialize::TraitType)3>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<MapWithTwoArray, (ThorsAnvil::Serialize::TraitType)3>::BinaryParserUtil(bool);
+namespace TAS = ThorsAnvil::Serialize;
 
-template ThorsAnvil::Serialize::BinaryParserUtil<Base,            (ThorsAnvil::Serialize::TraitType)3>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<Derived,         (ThorsAnvil::Serialize::TraitType)1>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<int,             (ThorsAnvil::Serialize::TraitType)2>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<MapWithMap,      (TAS::TraitType)3>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<MapOneValue,     (TAS::TraitType)3>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<MapTwoValue,     (TAS::TraitType)3>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<MapEmptyTest,    (TAS::TraitType)3>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<MapWithArray,    (TAS::TraitType)3>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<MapThreeValue,   (TAS::TraitType)3>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<MapWithTwoMap,   (TAS::TraitType)3>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<MapWithTwoArray, (TAS::TraitType)3>::BinaryParserUtil(bool);
+
+template TAS::BinaryParserUtil<Base,            (TAS::TraitType)3>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<Derived,         (TAS::TraitType)1>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<int,             (TAS::TraitType)2>::BinaryParserUtil(bool);
 
 // Array Specialization
-template ThorsAnvil::Serialize::BinaryParserUtil<std::vector<MapEmptyTest>,     (ThorsAnvil::Serialize::TraitType)4>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<std::vector<std::string>,      (ThorsAnvil::Serialize::TraitType)4>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<std::vector<std::vector<int>>, (ThorsAnvil::Serialize::TraitType)4>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<std::vector<int>,              (ThorsAnvil::Serialize::TraitType)4>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<std::vector<bool>,             (ThorsAnvil::Serialize::TraitType)4>::BinaryParserUtil(bool);
-template ThorsAnvil::Serialize::BinaryParserUtil<std::vector<double>,           (ThorsAnvil::Serialize::TraitType)4>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<std::vector<MapEmptyTest>,     (TAS::TraitType)4>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<std::vector<std::string>,      (TAS::TraitType)4>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<std::vector<std::vector<int>>, (TAS::TraitType)4>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<std::vector<int>,              (TAS::TraitType)4>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<std::vector<bool>,             (TAS::TraitType)4>::BinaryParserUtil(bool);
+template TAS::BinaryParserUtil<std::vector<double>,           (TAS::TraitType)4>::BinaryParserUtil(bool);
 #endif
 #endif
 

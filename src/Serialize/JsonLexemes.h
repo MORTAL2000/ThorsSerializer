@@ -10,7 +10,8 @@ namespace ThorsAnvil
     namespace Serialize
     {
 
-enum yytokentype {
+enum YYtokentype
+{
     JSON_STRING     = 258,
     JSON_INTEGER    = 259,
     JSON_FLOAT      = 260,

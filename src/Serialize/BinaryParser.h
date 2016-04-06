@@ -3,7 +3,7 @@
 #define THORS_ANVIL_SERIALIZE_BINARY_PARSER_H
 /*
  * BinaryParser<T>
- *      This is used in conjunction with BinaryPrinter<T> 
+ *      This is used in conjunction with BinaryPrinter<T>
  *
  *      Together these provide an implementation of:
  *          the ParserInterface for type T
@@ -16,7 +16,7 @@
  *      data is stored/read in a particular order. To make sure that the data being read matches
  *      the data being stored a hash based on the Traits is generated and stored as a prefix to
  *      the data. This allows the parser to validate it is reading the same object that was stored.
- *      
+ *
  *      This uses BinaryParserUtil<T> to do that actual work of parsing and generating the appropriate
  *      tokens needed by a user of the ParserInterface. If an member is a serializeable user type `U` we
  *      push BinaryParserUtil<U> onto the stack for generating tokens. When all tokens have been generated
@@ -131,8 +131,11 @@ class BinaryParserUtil<T, TraitType::Array>: public BinaryParserUtilBase
     public:
         BinaryParserUtil(bool root = true);
         std::size_t readSize(ParserInterface&)      override;
-        std::string getKeyFor(std::size_t) override {throw std::runtime_error("ThorsAnvil::Serialize::BinaryParserUtil<Array>::getKey: ForShould Never Get Here");}
         ParserToken pushNextState(std::size_t, ParserInterface& parser, ParserState& state, ParserToken norm) override;
+        std::string getKeyFor(std::size_t) override
+        {
+            throw std::runtime_error("ThorsAnvil::Serialize::BinaryParserUtil<Array>::getKey: ForShould Never Get Here");
+        }
 };
 
 template<typename T>
@@ -180,7 +183,8 @@ class BinaryParser: public ParserInterface
         {
             std::size_t hash   = TBin::net2Host(read<TBin::BinForm32>());
             std::size_t expect = std::uint32_t(thash<T>());
-            if (hash != expect) {
+            if (hash != expect)
+            {
                 throw std::runtime_error("ThorsAnvil::Serialize::BinaryParser::BinaryParser: input hash for binary object did not match");
             }
             
@@ -199,12 +203,18 @@ class BinaryParser: public ParserInterface
         virtual void    getValue(short int& value)             override {value = TBin::net2Host(read<TBin::BinForm16>());}
         virtual void    getValue(int& value)                   override {value = TBin::net2Host(read<TBin::BinForm32>());}
         virtual void    getValue(long int& value)              override {value = TBin::net2Host(read<TBin::BinForm64>());}
-        virtual void    getValue(long long int& value)         override {value = static_cast<unsigned long long int>(TBin::net2Host(read<TBin::BinForm128>()));}
+        virtual void    getValue(long long int& value)         override
+        {
+            value = static_cast<unsigned long long int>(TBin::net2Host(read<TBin::BinForm128>()));
+        }
 
         virtual void    getValue(unsigned short int& value)    override {value = TBin::net2Host(read<TBin::BinForm16>());}
         virtual void    getValue(unsigned int& value)          override {value = TBin::net2Host(read<TBin::BinForm32>());}
         virtual void    getValue(unsigned long int& value)     override {value = TBin::net2Host(read<TBin::BinForm64>());}
-        virtual void    getValue(unsigned long long int& value)override {value = static_cast<unsigned long long int>(TBin::net2Host(read<TBin::BinForm128>()));}
+        virtual void    getValue(unsigned long long int& value)override
+        {
+            value = static_cast<unsigned long long int>(TBin::net2Host(read<TBin::BinForm128>()));
+        }
 
         virtual void    getValue(float& value)                 override {value = TBin::net2HostIEEE<float>(read<TBin::BinForm32>());}
         virtual void    getValue(double& value)                override {value = TBin::net2HostIEEE<double>(read<TBin::BinForm64>());}

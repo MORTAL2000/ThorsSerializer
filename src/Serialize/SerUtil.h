@@ -63,7 +63,9 @@ class GetValueType<V, TraitType::Value>
         GetValueType(ParserInterface& parser, V& value)
         {
             if (parser.getToken() != ThorsAnvil::Serialize::ParserInterface::ParserToken::Value)
-            {   throw std::runtime_error("ThorsAnvil::Serializer::SerMap::GetValueType::GetValueType<Value>: Expecting a normal value after the key");
+            {
+                throw std::runtime_error("ThorsAnvil::Serializer::SerMap::GetValueType::GetValueType<Value>: "
+                                         "Expecting a normal value after the key");
             }
             parser.getValue(value);
         }
@@ -161,7 +163,7 @@ class Traits<std::pair<F, S>>
 {
     public:
         static constexpr TraitType type = TraitType::Map;
-        typedef std::pair<F,S>  Self;
+        typedef std::pair<F, S>  Self;
 
         using Members = std::tuple< REP_N(TypeAction, Self, first, second, 1) >;
 
@@ -341,7 +343,7 @@ class Traits<std::multiset<Key, Compare, Allocator>>
 };
 
 /* ------------------------------- Traits<std::map<Key, Value>> ------------------------------- */
-template<typename Key,typename T, typename Compare, typename Allocator>
+template<typename Key, typename T, typename Compare, typename Allocator>
 class MemberInserter<std::map<Key, T, Compare, Allocator>>
 {
     std::map<Key, T, Compare, Allocator>& container;
@@ -407,7 +409,7 @@ class Traits<std::map<std::string, Value>>
 };
 
 /* ------------------------------- Traits<std::multimap<Key, Value>> ------------------------------- */
-template<typename Key,typename T, typename Compare, typename Allocator>
+template<typename Key, typename T, typename Compare, typename Allocator>
 class MemberInserter<std::multimap<Key, T, Compare, Allocator>>
 {
     std::multimap<Key, T, Compare, Allocator>& container;

@@ -171,6 +171,12 @@ void JsonPrinter::addValue(float value)                 {output << PrefixValue(c
 void JsonPrinter::addValue(double value)                {output << PrefixValue(characteristics, state.size(), state.back()) << value;}
 void JsonPrinter::addValue(long double value)           {output << PrefixValue(characteristics, state.size(), state.back()) << value;}
 
-void JsonPrinter::addValue(bool value)                  {output << PrefixValue(characteristics, state.size(), state.back()) << std::boolalpha << value;}
-void JsonPrinter::addValue(std::string const& value)    {output << PrefixValue(characteristics, state.size(), state.back()) << '"' << value << '"';}
+void JsonPrinter::addValue(bool value)
+{
+    output << PrefixValue(characteristics, state.size(), state.back()) << std::boolalpha << value;
+}
+void JsonPrinter::addValue(std::string const& value)
+{
+    output << PrefixValue(characteristics, state.size(), state.back()) << '"' << value << '"';
+}
 
